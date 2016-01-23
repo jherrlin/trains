@@ -8,7 +8,7 @@
  * Controller of the projectsApp
  */
 angular.module('projectsApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function (stations) {
 
     var route = {
       origin: "Alvesta",
@@ -19,7 +19,7 @@ angular.module('projectsApp')
         departureTime: new Date(/* now, or future date */),
         trafficModel: google.maps.TrafficModel.PESSIMISTIC
       }
-  }
+    };
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
