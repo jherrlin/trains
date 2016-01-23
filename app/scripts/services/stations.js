@@ -11,6 +11,7 @@ angular.module('projectsApp')
 
   .service('stations', function () {
 
+
     return [
       {
         id: 0,
