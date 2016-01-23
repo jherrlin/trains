@@ -10,38 +10,40 @@
 angular.module('projectsApp')
   .controller('MainCtrl', function ($scope, stations, carDistance) {
 
-    $scope.stations = stations;
-
-    $scope.start = null;
-    $scope.destination = null;
-
-    $scope.changeTrip = function () {
-      console.log($scope.destination);
-    };
-
     var directionsService = new google.maps.DirectionsService();
-
-    var route = {
-      origin: $scope.start,
-      destination: $scope.destination,
-      provideRouteAlternatives: false,
-      travelMode: google.maps.TravelMode.TRANSIT,
-      transitOptions: {
-        modes: [ google.maps.TransitMode.RAIL]
-      }
-    };
+    var directionsDisplay = new google.maps.DirectionsRenderer();
 
     var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 56.8665586, lng: 14.7000050},
     zoom: 9
     });
 
-    var directionsDisplay = new google.maps.DirectionsRenderer();
-    directionsDisplay.setMap(map);
 
-    directionsService.route(route, function(result, status) {
-      if (status == google.maps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(result);
-      }
-    });
+    $scope.stations = stations;
+    $scope.start = null;
+    $scope.destination = null;
+
+    $scope.changeTrip = function () {
+      if ($scope.start === null || $scope.destination === null) { return; };
+
+      var route = {
+        origin: stations[$scope.start].name,
+        destination: stations[$scope.destination].name,
+        provideRouteAlternatives: false,
+        travelMode: google.maps.TravelMode.TRANSIT,
+        transitOptions: {
+          modes: [ google.maps.TransitMode.RAIL]
+        }
+      };
+
+      directionsDisplay.setMap(map);
+
+      directionsService.route(route, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(result);
+        }
+      });
+
+    };
+
   });
