@@ -12,8 +12,8 @@ angular.module('projectsApp')
 
     // Initialize map
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
+        center: {lat: 56.8665586, lng: 14.7000050},
+        zoom: 9
       });
 
     this.awesomeThings = [
