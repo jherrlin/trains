@@ -1,11 +1,14 @@
 'use strict';
 
+ /* globals google */
+
 /**
  * @ngdoc function
  * @name projectsApp.controller:MainCtrl
  * @description
  * # MainCtrl
  * Controller of the projectsApp
+ *
  */
 angular.module('projectsApp')
   .controller('MainCtrl', function ($scope, carDistance, route, stations)  {
@@ -25,15 +28,15 @@ angular.module('projectsApp')
       var start;
       var destination;
 
-      if ($scope.start === null || $scope.destination === null) { return; };
+      if ($scope.start === null || $scope.destination === null) { return; }
 
       start = stations[$scope.start].name;
-      destination = stations[$scope.destination].name
+      destination = stations[$scope.destination].name;
 
       directionsDisplay.setMap(map);
 
       directionsService.route(route.create(start, destination), function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
+        if (status === google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(result);
         }
       });

@@ -1,5 +1,7 @@
 'use strict';
 
+ /* globals google */
+
 /**
  * @ngdoc service
  * @name projectsApp.route
