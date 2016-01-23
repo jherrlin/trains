@@ -12,11 +12,18 @@ angular.module('projectsApp')
 
     $scope.stations = stations;
 
+    $scope.start = null;
+    $scope.destination = null;
+
+    $scope.changeTrip = function () {
+      console.log($scope.destination);
+    };
+
     var directionsService = new google.maps.DirectionsService();
 
     var route = {
-      origin: "Alvesta",
-      destination: " Växjö",
+      origin: $scope.start,
+      destination: $scope.destination,
       provideRouteAlternatives: false,
       travelMode: google.maps.TravelMode.TRANSIT,
       transitOptions: {
