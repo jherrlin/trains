@@ -8,8 +8,10 @@
  * Controller of the projectsApp
  */
 angular.module('projectsApp')
-  .controller('MainCtrl', function (stations) {
-    var directionsDisplay;
+  .controller('MainCtrl', function ($scope, stations, carDistance) {
+
+    $scope.stations = stations;
+
     var directionsService = new google.maps.DirectionsService();
 
     var route = {
@@ -27,7 +29,7 @@ angular.module('projectsApp')
     zoom: 9
     });
 
-    directionsDisplay = new google.maps.DirectionsRenderer();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(map);
 
     directionsService.route(route, function(result, status) {

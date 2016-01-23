@@ -8,10 +8,7 @@
  * Service in the projectsApp.
  */
 angular.module('projectsApp')
-  .service('carDistance', function (from, to) {
-
-    var from = from.id;
-    var to = to.id;
+  .service('carDistance', function () {
 
     var arr = [
       [0	,14.7   ,23.7	,34.5	,60.5	,74	    ,80.4	,82.5	,87.3	,107.8],
@@ -26,5 +23,12 @@ angular.module('projectsApp')
       [107.8,94.9	,86.6	,75.6	,48.3	,34	    ,41.5	,38.8	,23.8	,0    ]
     ];
 
-    return arr[from][to];
+      var functions =  {
+          total: function (from, to) {
+              return arr[from][to];
+          }
+      };
+
+      return functions;
+
   });

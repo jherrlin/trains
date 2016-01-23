@@ -8,10 +8,7 @@
  * Service in the projectsApp.
  */
 angular.module('projectsApp')
-  .service('trainPrices', function (from, to) {
-
-    var from = from.id;
-    var to = to.id;
+  .service('trainPrices', function () {
 
     var arr = [
       [0	,399	,694	,854	,1374	,1454	,1534	,1614	,1534	,1614],
@@ -26,6 +23,11 @@ angular.module('projectsApp')
       [1614	,1614	,1280	,1200	,1040	,940	,1040	,1120	,840	,0   ]
     ];
 
-    return arr[from][to];
-    // AngularJS will instantiate a singleton by calling "new" on this function
+    var functions =  {
+      total: function (from, to) {
+        return arr[from][to];
+      }
+    };
+
+    return functions;
   });
