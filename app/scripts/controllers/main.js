@@ -15,7 +15,7 @@ angular.module('projectsApp')
 
     var directionsService = new google.maps.DirectionsService();
     var trainDisplay = new google.maps.DirectionsRenderer();
-    var carDisplay = new google.maps.DirectionsRenderer();
+    var carDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "red" } });
 
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 56.8665586, lng: 14.7000050},
