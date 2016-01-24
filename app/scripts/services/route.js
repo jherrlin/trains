@@ -30,6 +30,7 @@ angular.module('projectsApp')
       traincreate: function (startlat, startlng, destinationlat, destinationlng) {
         trainroute.origin = new google.maps.LatLng(startlat, startlng);
         trainroute.destination = new google.maps.LatLng(destinationlat, destinationlng);
+        trainroute.transitOptions.departureTime = new Date(1453640140843);
         return trainroute;
       },
       carcreate: function (startlat, startlng, destinationlat, destinationlng) {
