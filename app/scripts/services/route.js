@@ -11,20 +11,31 @@
  */
 angular.module('projectsApp')
   .factory('route', function () {
-    var route = {
+    var trainroute = {
       provideRouteAlternatives: false,
       travelMode: google.maps.TravelMode.TRANSIT,
       transitOptions: {
-        modes: [ google.maps.TransitMode.RAIL]
+        modes: [ google.maps.TransitMode.RAIL],
+        routingPreference: google.maps.TransitRoutePreference.LESS_WALKING
       }
+    };
+
+    var carroute = {
+      provideRouteAlternatives: false,
+      travelMode: google.maps.TravelMode.DRIVING,
     };
 
     // Public API here
     return {
-      create: function (start, destination) {
-        route.origin = start;
-        route.destination = destination;
-        return route;
+      traincreate: function (startlat, startlng, destinationlat, destinationlng) {
+        trainroute.origin = new google.maps.LatLng(startlat, startlng);
+        trainroute.destination = new google.maps.LatLng(destinationlat, destinationlng);
+        return trainroute;
+      },
+      carcreate: function (startlat, startlng, destinationlat, destinationlng) {
+        carroute.origin = new google.maps.LatLng(startlat, startlng);
+        carroute.destination = new google.maps.LatLng(destinationlat, destinationlng);
+        return carroute;
       }
     };
   });
