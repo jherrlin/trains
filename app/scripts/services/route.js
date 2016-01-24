@@ -15,8 +15,8 @@ angular.module('projectsApp')
       provideRouteAlternatives: false,
       travelMode: google.maps.TravelMode.TRANSIT,
       transitOptions: {
-        modes: [ google.maps.TransitMode.RAIL],
-        routingPreference: google.maps.TransitRoutePreference.LESS_WALKING
+        modes: [google.maps.TransitMode.RAIL],
+        routingPreference: google.maps.TransitRoutePreference.FEWER_TRANSFERS
       }
     };
 
@@ -30,7 +30,7 @@ angular.module('projectsApp')
       traincreate: function (startlat, startlng, destinationlat, destinationlng) {
         trainroute.origin = new google.maps.LatLng(startlat, startlng);
         trainroute.destination = new google.maps.LatLng(destinationlat, destinationlng);
-        trainroute.transitOptions.departureTime = new Date(1453640140843);
+        trainroute.transitOptions.departureTime = new Date(1453043101312);
         return trainroute;
       },
       carcreate: function (startlat, startlng, destinationlat, destinationlng) {
