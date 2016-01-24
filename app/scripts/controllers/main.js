@@ -11,7 +11,7 @@
  *
  */
 angular.module('projectsApp')
-  .controller('MainCtrl', function ($scope, carDistance, route, stations)  {
+  .controller('MainCtrl', function ($scope, carDistance, carPrices, route, stations)  {
 
     var directionsService = new google.maps.DirectionsService();
     var trainDisplay = new google.maps.DirectionsRenderer();
@@ -41,7 +41,7 @@ angular.module('projectsApp')
 
       directionsService.route(trainRoute, function(result, status) {
         if (status === google.maps.DirectionsStatus.OK) {
-          $scope.traindistance = result.routes[0].legs[0].distance;
+          $scope.trainDistance = result.routes[0].legs[0].distance;
           trainDisplay.setDirections(result);
           $scope.$apply(); // Force rerendering of UI
         }
@@ -49,11 +49,9 @@ angular.module('projectsApp')
 
       directionsService.route(carRoute, function(result, status) {
         if (status === google.maps.DirectionsStatus.OK) {
-          $scope.cardistance = result.routes[0].legs[0].distance;
-          $scope.carprice = ((((result.routes[0].legs[0].distance.value/10000.0*$scope.gasprice)*$scope.gasconsuming)*40)*2); // Think that this cals are wrong ;)
-          $scope.gasconsuming_total = ((((result.routes[0].legs[0].distance.value/10000.0)*$scope.gasconsuming)*40)*2);  // Think that this cals are wrong ;)
+          $scope.carDistance = result.routes[0].legs[0].distance;
+          $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.gasConsumption, $scope.gasPrice);
           carDisplay.setDirections(result);
-          console.log($scope.carprice);
           $scope.$apply(); // Force rerendering of UI
         }
       });
@@ -62,8 +60,8 @@ angular.module('projectsApp')
     $scope.stations = stations;
     $scope.start = 0;
     $scope.destination = 7;
-    $scope.gasconsuming = 0.7;
-    $scope.gasprice = 18;
+    $scope.gasConsumption = 0.7;
+    $scope.gasPrice = 18;
     $scope.gasconsuming_total = 0;
 
     $scope.changeTrip();
