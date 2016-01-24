@@ -53,6 +53,7 @@ angular.module('projectsApp')
           $scope.carprice = ((((result.routes[0].legs[0].distance.value/10000.0*$scope.gasprice)*$scope.gasconsuming)*40)*2); // Think that this cals are wrong ;)
           $scope.gasconsuming_total = ((((result.routes[0].legs[0].distance.value/10000.0)*$scope.gasconsuming)*40)*2);  // Think that this cals are wrong ;)
           carDisplay.setDirections(result);
+          console.log($scope.carprice);
           $scope.$apply(); // Force rerendering of UI
         }
       });
