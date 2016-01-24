@@ -25,27 +25,25 @@
     </div>
   </form>
 
-<div class="">
-  Här publicerar vi data och statistik:
-  <br>
-  Train data: {{ traindistance }}
-
-  <br>
-  Car data: {{ cardistance }}
-
-  <br>
-  <br>
-
-  {{ carprice }}
-
-  <br>
-  {{ gasconsuming_total }}
-
-
-
-
-</div>
-
+  <table class="table table-striped">
+    <thead>
+      <th>Tåg</th>
+      <th>Bil</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ traindistance.text }}</td>
+        <td>{{ cardistance.text }}</td>
+        <th>Avstånd</th>
+      </tr>
+      <tr>
+        <td>{{ trainprice.text }}</td>
+        <td>{{ carprice.text }}</td>
+        <th>Pris</th>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 

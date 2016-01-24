@@ -96,3 +96,8 @@ html, body, .ng-scope, .settings, .container-fluid {
   height: 100%;
 }
 
+table tbody tr th {
+  width:auto;
+  text-align:right;
+  white-space: nowrap
+}
