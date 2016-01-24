@@ -11,7 +11,7 @@
  *
  */
 angular.module('projectsApp')
-  .controller('MainCtrl', function ($scope, carDistance, carPrices, route, stations)  {
+  .controller('MainCtrl', function ($scope, carDistance, carPrices, trainPrices, route, stations)  {
 
     var directionsService = new google.maps.DirectionsService();
     var trainDisplay = new google.maps.DirectionsRenderer();
@@ -42,6 +42,7 @@ angular.module('projectsApp')
       directionsService.route(trainRoute, function(result, status) {
         if (status === google.maps.DirectionsStatus.OK) {
           $scope.trainDistance = result.routes[0].legs[0].distance;
+          $scope.trainPrice = trainPrices.total(start.id, destination.id);
           trainDisplay.setDirections(result);
           $scope.$apply(); // Force rerendering of UI
         }
