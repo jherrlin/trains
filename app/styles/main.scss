@@ -101,3 +101,28 @@ table tbody tr th {
   text-align:right;
   white-space: nowrap
 }
+
+ul {
+  list-style: none;
+}
+
+.car-legend {
+  background-color: red;
+  float: left;
+  width: 20px;
+  height: 10px;
+  margin: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0,0,0,.2);
+}
+.train-legend {
+  background-color: lightblue;
+  float: left;
+  width: 20px;
+  height: 10px;
+  margin: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0,0,0,.2);
+}
