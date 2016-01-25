@@ -22,6 +22,11 @@ angular.module('projectsApp')
       zoom: 9
     });
 
+    $scope.updateCalculations = function () {
+      chart.draw($scope.trainPrice, $scope.carPrice);
+      $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.gasConsumption, $scope.gasPrice);
+    };
+
     $scope.changeTrip = function () {
       var carRoute;
       var destination;
@@ -44,8 +49,7 @@ angular.module('projectsApp')
           $scope.trainDistance = result.routes[0].legs[0].distance;
           $scope.trainPrice = trainPrices.total(start.id, destination.id);
           trainDisplay.setDirections(result);
-          $scope.$apply(); // Force rerendering of UI
-          chart.draw($scope.trainPrice, $scope.carPrice);
+          $scope.updateCalculations();
         }
       });
 
@@ -54,8 +58,7 @@ angular.module('projectsApp')
           $scope.carDistance = result.routes[0].legs[0].distance;
           $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.gasConsumption, $scope.gasPrice);
           carDisplay.setDirections(result);
-          $scope.$apply(); // Force rerendering of UI
-          chart.draw($scope.trainPrice, $scope.carPrice);
+          $scope.updateCalculations();
         }
       });
     };
