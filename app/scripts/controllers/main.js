@@ -11,7 +11,7 @@
  *
  */
 angular.module('projectsApp')
-  .controller('MainCtrl', function ($scope, carDistance, carPrices, trainPrices, route, stations)  {
+  .controller('MainCtrl', function ($scope, carDistance, carPrices, chart, trainPrices, route, stations)  {
 
     var directionsService = new google.maps.DirectionsService();
     var trainDisplay = new google.maps.DirectionsRenderer();
@@ -45,6 +45,7 @@ angular.module('projectsApp')
           $scope.trainPrice = trainPrices.total(start.id, destination.id);
           trainDisplay.setDirections(result);
           $scope.$apply(); // Force rerendering of UI
+          chart.draw($scope.trainPrice, $scope.carPrice);
         }
       });
 
@@ -54,6 +55,7 @@ angular.module('projectsApp')
           $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.gasConsumption, $scope.gasPrice);
           carDisplay.setDirections(result);
           $scope.$apply(); // Force rerendering of UI
+          chart.draw($scope.trainPrice, $scope.carPrice);
         }
       });
     };
