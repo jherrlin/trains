@@ -10,7 +10,11 @@
  * Factory in the projectsApp.
  */
 angular.module('projectsApp')
-  .factory('route', function () {
+  .service('route', function () {
+    var directionsService = new google.maps.DirectionsService();
+    var trainDisplay = new google.maps.DirectionsRenderer();
+    var carDisplay = new google.maps.DirectionsRenderer({ polylineOptions: { strokeColor: "red" } });
+
     var trainroute = {
       provideRouteAlternatives: false,
       travelMode: google.maps.TravelMode.TRANSIT,
@@ -25,18 +29,45 @@ angular.module('projectsApp')
       travelMode: google.maps.TravelMode.DRIVING,
     };
 
-    // Public API here
+    var traincreate =  function (start, destination) {
+      trainroute.origin = new google.maps.LatLng(start.lat, start.lng);
+      trainroute.destination = new google.maps.LatLng(destination.lat, destination.lng);
+      trainroute.transitOptions.departureTime = new Date(1453043101312);
+      return trainroute;
+    };
+
+    var carcreate = function (start, destination) {
+      carroute.origin = new google.maps.LatLng(start.lat, start.lng);
+      carroute.destination = new google.maps.LatLng(destination.lat, destination.lng);
+      return carroute;
+    };
+
     return {
-      traincreate: function (startlat, startlng, destinationlat, destinationlng) {
-        trainroute.origin = new google.maps.LatLng(startlat, startlng);
-        trainroute.destination = new google.maps.LatLng(destinationlat, destinationlng);
-        trainroute.transitOptions.departureTime = new Date(1453043101312);
-        return trainroute;
+      init: function (map) {
+        trainDisplay.setMap(map);
+        carDisplay.setMap(map);
       },
-      carcreate: function (startlat, startlng, destinationlat, destinationlng) {
-        carroute.origin = new google.maps.LatLng(startlat, startlng);
-        carroute.destination = new google.maps.LatLng(destinationlat, destinationlng);
-        return carroute;
+
+      updateTrainRoute: function (start, destination, callback) {
+        var route = traincreate(start, destination);
+        var request = function (result, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            trainDisplay.setDirections(result);
+            callback(result);
+          }
+        };
+        directionsService.route(route, request);
+      },
+
+      updateCarRoute: function (start, destination, callback) {
+        var route = carcreate(start, destination);
+        var request = function (result, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            carDisplay.setDirections(result);
+            callback(result);
+          }
+        };
+        directionsService.route(route, request);
       }
     };
   });

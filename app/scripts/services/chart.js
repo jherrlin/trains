@@ -1,5 +1,7 @@
 'use strict';
 
+/* globals Chart */
+
 /**
  * @ngdoc service
  * @name projectsApp.chart
