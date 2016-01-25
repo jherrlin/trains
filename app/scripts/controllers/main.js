@@ -23,8 +23,8 @@ angular.module('projectsApp')
     });
 
     $scope.updateCalculations = function () {
-      chart.draw($scope.trainPrice, $scope.carPrice);
       $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.gasConsumption, $scope.gasPrice);
+      chart.draw($scope.trainPrice, $scope.carPrice);
     };
 
     $scope.changeTrip = function () {
