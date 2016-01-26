@@ -41,15 +41,14 @@ angular.module('projectsApp')
           $scope.carDistance = result.routes[0].legs[0].distance;
           $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil);
           $scope.updateCalculations();
-          $scope.$apply();
         });
       });
     };
 
     $scope.stations = stations;
     $scope.start = 0;
-    $scope.destination = 6;
-    $scope.carCostPerMil = 18.5;
+    $scope.destination = 7;
+    $scope.carCostPerMil = 12.6;
     $scope.gasconsuming_total = 0;
 
     $scope.changeTrip();
