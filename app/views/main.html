@@ -15,32 +15,27 @@
 
     <div class="form-group">
       <label>Bensinpris(kr / L):</label>
-      <input class="form-control" ng-model="gasPrice" ng-change="updateCalculations()">
-      </input>
-    </div>
-    <div class="form-group">
-      <label>Bensinförbrukning (L / mil):</label>
-      <input class="form-control" ng-model="gasConsumption" ng-change="updateCalculations()">
+      <input class="form-control" ng-model="carCostPerMil" ng-change="updateCalculations()">
       </input>
     </div>
   </form>
 
   <table class="table table-striped">
     <thead>
-      <th>Tåg</th>
-      <th>Bil</th>
+      <th>Avstånd</th>
+      <th>Pris</th>
       <th></th>
     </thead>
     <tbody>
       <tr>
-        <td>{{ trainDistance.text }}</td>
         <td>{{ carDistance.text }}</td>
-        <th>Avstånd</th>
+        <td>{{ carPrice.toFixed(0) }}kr</td>
+        <th>Bil</th>
       </tr>
       <tr>
+        <td>{{ trainDistance.text }}</td>
         <td>{{ trainPrice }} kr</td>
-        <td>{{ carPrice.toFixed(2) }} kr</td>
-        <th>Pris</th>
+        <th>Tåg</th>
       </tr>
     </tbody>
   </table>

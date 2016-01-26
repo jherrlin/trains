@@ -18,7 +18,7 @@ angular.module('projectsApp')
     });
 
     $scope.updateCalculations = function () {
-      $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.gasConsumption, $scope.gasPrice);
+      $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil);
       chart.draw($scope.trainPrice, $scope.carPrice);
     };
 
@@ -38,7 +38,7 @@ angular.module('projectsApp')
 
         route.updateCarRoute(start, destination, function(result) {
           $scope.carDistance = result.routes[0].legs[0].distance;
-          $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.gasConsumption, $scope.gasPrice);
+          $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil);
           $scope.updateCalculations();
         });
       });
@@ -46,9 +46,8 @@ angular.module('projectsApp')
 
     $scope.stations = stations;
     $scope.start = 0;
-    $scope.destination = 7;
-    $scope.gasConsumption = 0.7;
-    $scope.gasPrice = 18;
+    $scope.destination = 6;
+    $scope.carCostPerMil = 18.5;
     $scope.gasconsuming_total = 0;
 
     $scope.changeTrip();

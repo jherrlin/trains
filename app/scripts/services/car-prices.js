@@ -27,13 +27,12 @@ angular.module('projectsApp')
       total: function (from, to) {
         return arr[from][to];
       },
-      calculate: function (distance, gasPrice, consumption) {
+      calculate: function (distance, carCostPerMil) {
         var mil = distance / 10000.0;
-        var routeConsumption = mil * consumption;
-        var pricePerTrip =  routeConsumption * gasPrice;
+        var routePrice = mil * carCostPerMil;
         var tripsPerMonth = 40;
 
-        return (pricePerTrip * tripsPerMonth);
+        return (routePrice * tripsPerMonth);
       }
     };
 
