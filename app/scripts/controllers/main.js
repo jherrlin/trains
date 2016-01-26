@@ -20,6 +20,7 @@ angular.module('projectsApp')
     $scope.updateCalculations = function () {
       $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil);
       chart.draw($scope.trainPrice, $scope.carPrice);
+      $scope.$apply();
     };
 
     $scope.changeTrip = function () {
@@ -40,6 +41,7 @@ angular.module('projectsApp')
           $scope.carDistance = result.routes[0].legs[0].distance;
           $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil);
           $scope.updateCalculations();
+          $scope.$apply();
         });
       });
     };
