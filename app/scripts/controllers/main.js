@@ -14,7 +14,10 @@ angular.module('projectsApp')
   .controller('MainCtrl', function ($scope, carDistance, carPrices, chart, trainPrices, route, stations)  {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 56.8665586, lng: 14.7000050},
-      zoom: 9
+      zoom: 9,
+      scrollwheel: false,
+      mapTypeControl: false,
+      streetViewControl: false
     });
 
     $scope.updateCalculations = function () {
