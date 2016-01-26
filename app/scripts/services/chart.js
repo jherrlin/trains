@@ -30,14 +30,12 @@ angular.module('projectsApp')
         ]
       };
 
-      //Chart.defaults.global.animation = false;
-
-      var ctx = document.getElementById("chart").getContext("2d");
-      var myBarChart = new Chart(ctx).Bar(data, options);
+      Chart.defaults.global.animation = false;
 
     return {
       draw: function (trainPrice, carPrice) {
-        console.log(myBarChart.datasets);
+        var ctx = document.getElementById("chart").getContext("2d");
+        var myBarChart = new Chart(ctx).Bar(data, options);
         myBarChart.datasets[0].bars[0].value = trainPrice;
         myBarChart.datasets[1].bars[0].value = carPrice;
         myBarChart.update();

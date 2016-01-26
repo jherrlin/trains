@@ -12,6 +12,18 @@
  */
 angular.module('projectsApp')
   .controller('MainCtrl', function ($scope, carDistance, carPrices, chart, trainPrices, route, stations)  {
+
+    $scope.safeApply = function(fn) {
+      var phase = this.$root.$$phase;
+      if(phase == '$apply' || phase == '$digest') {
+        if(fn && (typeof(fn) === 'function')) {
+          fn();
+        }
+      } else {
+        this.$apply(fn);
+      }
+    };
+
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 56.8665586, lng: 14.7000050},
       zoom: 9,
@@ -23,7 +35,7 @@ angular.module('projectsApp')
     $scope.updateCalculations = function () {
       $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil);
       chart.draw($scope.trainPrice, $scope.carPrice);
-      $scope.$apply();
+      $scope.safeApply();
     };
 
     $scope.changeTrip = function () {
