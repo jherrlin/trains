@@ -19,13 +19,11 @@ angular.module('projectsApp')
         datasets: [
           {
             label: "Tåg",
-            fillColor: "lightblue",
-            data: [0]
+            fillColor: "lightblue"
           },
           {
             label: "Bil",
-            fillColor: "red",
-            data: [0]
+            fillColor: "red"
           }
         ]
       };
@@ -34,11 +32,13 @@ angular.module('projectsApp')
     Chart.defaults.global.tooltipEvents = [];
     return {
       draw: function (trainPrice, carPrice) {
+        var myBarChart;
         var ctx = document.getElementById("chart").getContext("2d");
-        var myBarChart = new Chart(ctx).Bar(data, options);
-        myBarChart.datasets[0].bars[0].value = trainPrice;
-        myBarChart.datasets[1].bars[0].value = carPrice;
-        myBarChart.update();
+
+        data.datasets[0].data = [trainPrice];
+        data.datasets[1].data = [carPrice];
+
+        myBarChart = new Chart(ctx).Bar(data, options);
       }
     };
   });
