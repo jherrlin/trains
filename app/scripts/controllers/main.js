@@ -29,7 +29,8 @@ angular.module('projectsApp')
       zoom: 9,
       scrollwheel: false,
       mapTypeControl: false,
-      streetViewControl: false
+      streetViewControl: false,
+      draggable: false
     });
 
     $scope.updateCalculations = function () {

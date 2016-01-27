@@ -30,8 +30,8 @@ angular.module('projectsApp')
         ]
       };
 
-      Chart.defaults.global.animation = false;
-
+    Chart.defaults.global.animation = false;
+    Chart.defaults.global.tooltipEvents = [];
     return {
       draw: function (trainPrice, carPrice) {
         var ctx = document.getElementById("chart").getContext("2d");
