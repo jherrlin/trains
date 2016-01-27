@@ -1,4 +1,3 @@
-<div class="col-xs-12 col-sm-4">
   <form>
     <div class="form-group">
       <label>Startpunkt</label>
@@ -15,9 +14,7 @@
 
     <div class="form-group">
       <label>Bilkostnad per mil:</label>
-      <!--<input class="form-control" ng-model="carCostPerMil" type="number" ng-change="updateCalculations()">-->
       <input type="text" class="form-control" id="inputAmount" name="inputAmount" placeholder="Bilkostnad per mil" ng-model="carCostPerMil" ng-change="updateCalculations()" smart-float />
-
       </input>
     </div>
   </form>
@@ -52,12 +49,5 @@
     <li><span class="car-legend"></span> Bil</li>
   </ul>
 
-  <div align="right">
-    <p class="creators">Skapad av <a href="https://github.com/jherrlin">John Herrlin</a> &amp; <a href="https://github.com/rk222ev">Robin Karlsson</a>.</p>
-  </div>
-</div>
-
-<div class="col-xs-12 col-sm-8" style="height: 100%">
   <div id="map"></div>
-</div>
 

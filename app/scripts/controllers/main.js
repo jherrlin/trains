@@ -64,7 +64,7 @@ angular.module('projectsApp')
     $scope.stations = stations;
     $scope.start = 0;
     $scope.destination = 7;
-    $scope.carCostPerMil = 12.6;
+    $scope.carCostPerMil = 18.50;
     $scope.gasconsuming_total = 0;
 
     $scope.changeTrip();
