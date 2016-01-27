@@ -34,7 +34,7 @@ angular.module('projectsApp')
     });
 
     $scope.updateCalculations = function () {
-      $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil);
+      $scope.carPrice = carPrices.calculate($scope.carDistance.value, $scope.carCostPerMil) || 0;
       chart.draw($scope.trainPrice, $scope.carPrice);
       $scope.safeApply();
     };
